@@ -1,0 +1,41 @@
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+int main()
+{
+	//输入
+	char a[101];
+	cin.get(a,100) ;
+	
+
+	//数据库
+	
+	//2007
+	string year07[19];
+	
+	year07[0] = "曲目：Ievan Polkka\nP主：Otomania\n投稿时间：2007 - 09 - 04 12:55\n达成时间：2007 - 11 - 17 07 : 26\n所用时间：0073日18时31分";
+	year07[1] = "曲目：恋爱中的VOC@LOID\nP主：OSTER project\n投稿时间：2007 - 09 - 13 19:56\n达成时间：2008 - 10 - 15 20 : 24\n所用时间：0398日00时28分"
+
+		
+	//搜索
+	char* ip1;
+	char str1[] = "Ievan Polkka";
+	ip1 = strstr(str1, a);
+	if (ip1 != NULL)
+		cout << year07[0] << "\n";
+	else
+		;
+
+	char* ip2;
+	char str2[] = "恋爱中的VOC@LOID";
+	ip2 = strstr(str2, a);
+	if (ip2 != NULL)
+		cout << year07[1] << "\n";
+	else
+		;
+
+	//结束
+	return 0;
+}

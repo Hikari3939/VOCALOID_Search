@@ -1,0 +1,73 @@
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+//定义函数
+bool search( char str[], char x[101])
+{
+	char* ip;
+	ip = strstr(str, x);
+	if (ip != NULL)
+		return true;
+	else
+		return false;
+}
+
+//主程序
+int main()
+{
+	//输入
+	char a[101];
+	cin.get(a,100) ;
+	cout<<"\n";
+	
+
+	//数据库
+	
+	//2007
+	string year07[19];
+	
+	year07[0] = "曲目：Ievan Polkka\nP主：Otomania\n投稿时间：2007 - 09 - 04 12:55\n达成时间：2007 - 11 - 17 07 : 26\n所用时间：0073日18时31分";
+	char str1[] = "Ievan Polkka";
+	year07[1] = "曲目：恋爱中的VOC@LOID\nP主：OSTER project\n投稿时间：2007 - 09 - 13 19:56\n达成时间：2008 - 10 - 15 20 : 24\n所用时间：0398日00时28分";
+	char str2[] = "恋爱中的VOC@LOID";
+	year07[2] = "曲目：你唯一的歌姬\nP主：azuma\n投稿时间：2007 - 09 - 18 06:46\n达成时间：2013 - 11 - 01 12 : 55\n所用时间：2236日06时09分";
+	char str3[] = "你唯一的歌姬";
+	year07[3] = "曲目：把你给MIKUMIKU掉♪\nP主：ika\n投稿时间：2007 - 09 - 20 01:22\n达成时间：2007 - 10 - 15 22 : 18\n所用时间：0025日20时56分";
+	char str4[] = "把你给MIKUMIKU掉♪";
+	year07[4] = "曲目：Packaged\nP主：kz(livetune)\n投稿时间：2007 - 09 - 25 01:49\n达成时间：2009 - 04 - 21 23 : 41\n所用时间：0574日21时52分";
+	char str5[] = "Packaged";
+		
+		
+	//搜索
+
+	if (search(str1, a) == true)
+		cout << year07[0] << "\n";
+	else
+		;
+
+	if (search(str2, a) == true)
+		cout << year07[1] << "\n";
+	else
+		;
+
+	if (search(str3, a) == true)
+		cout << year07[2] << "\n";
+	else
+		;
+	
+	if (search(str4, a) == true)
+		cout << year07[3] << "\n";
+	else
+		;
+
+	if (search(str5, a) == true)
+		cout << year07[4] << "\n";
+	else
+		; 
+	
+	
+	//结束
+	return 0;
+}

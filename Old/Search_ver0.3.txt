@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
+int main()
+{
+	
+
+	//数据库
+	
+	//2007
+	string year07[18];
+
+	string year07_word[18];	
+	
+	year07[0] = "曲目：Ievan Polkka\nP主：Otomania\n投稿时间：2007 - 09 - 04 12:55\n达成时间：2007 - 11 - 17 07 : 26\n所用时间：0073日18时31分";
+	year07_word[0] = "Ievan Polkka";
+	year07[1] = "曲目：恋爱中的VOC@LOID\nP主：OSTER project\n投稿时间：2007 - 09 - 13 19:56\n达成时间：2008 - 10 - 15 20 : 24\n所用时间：0398日00时28分";
+	year07_word[1] = "恋爱中的VOC@LOID";
+	year07[2] = "曲目：你唯一的歌姬\nP主：azuma\n投稿时间：2007 - 09 - 18 06:46\n达成时间：2013 - 11 - 01 12 : 55\n所用时间：2236日06时09分";
+	year07_word[2] = "你唯一的歌姬";
+	year07[3] = "曲目：把你给MIKUMIKU掉♪\nP主：ika\n投稿时间：2007 - 09 - 20 01:22\n达成时间：2007 - 10 - 15 22 : 18\n所用时间：0025日20时56分";
+	year07_word[3] = "把你给MIKUMIKU掉♪";
+	year07[4] = "曲目：Packaged\nP主：kz(livetune)\n投稿时间：2007 - 09 - 25 01:49\n达成时间：2009 - 04 - 21 23 : 41\n所用时间：0574日21时52分";
+	year07_word[4] = "Packaged";
+		
+		
+	//搜索
+	
+	string i;
+
+	while (i != "Finish")
+	{
+		getline(cin, i);
+		cout << "\n";
+
+		int a;
+
+		for (a = 0; a <= 4; a++)
+		{
+
+			if (year07_word[a].find(i) != -1)
+			{
+				cout << year07[a] << "\n";
+				break;
+			}
+			else
+				continue;			
+		}
+		
+	}
+	
+	//结束
+	return 0;
+}
