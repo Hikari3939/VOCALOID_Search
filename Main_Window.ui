@@ -28,11 +28,11 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
-  <widget class="QLineEdit" name="lineEdit_search">
+  <widget class="SearchLineEdit" name="lineEdit_search">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>170</y>
+     <x>270</x>
+     <y>100</y>
      <width>360</width>
      <height>36</height>
     </rect>
@@ -42,6 +42,13 @@
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SearchLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

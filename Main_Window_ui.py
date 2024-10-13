@@ -15,7 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QLineEdit, QSizePolicy, QWidget)
+from PySide6.QtWidgets import (QApplication, QSizePolicy, QWidget)
+
+from qfluentwidgets import SearchLineEdit
 
 class Ui_Main_Window(object):
     def setupUi(self, Main_Window):
@@ -29,9 +31,9 @@ class Ui_Main_Window(object):
         Main_Window.setSizePolicy(sizePolicy)
         Main_Window.setMinimumSize(QSize(720, 640))
         Main_Window.setAutoFillBackground(False)
-        self.lineEdit_search = QLineEdit(Main_Window)
+        self.lineEdit_search = SearchLineEdit(Main_Window)
         self.lineEdit_search.setObjectName(u"lineEdit_search")
-        self.lineEdit_search.setGeometry(QRect(300, 170, 360, 36))
+        self.lineEdit_search.setGeometry(QRect(270, 100, 360, 36))
         self.lineEdit_search.setFrame(False)
 
         self.retranslateUi(Main_Window)
