@@ -1,5 +1,6 @@
 import logging
 import httpx
+import json
 import re
 
 logging.basicConfig(
@@ -14,6 +15,7 @@ logging.basicConfig(
 
 def scrape_page(url, headers):
     logging.info('scraping %s...', url)
+    
     try:
         response = httpx.get(url=url, headers=headers)
         if response.status_code == 200:
@@ -22,6 +24,50 @@ def scrape_page(url, headers):
             logging.error('get inavilid status code %s while scraping %s', response.status_code, url)
     except httpx.RequestError:
         logging.exception('error occurred while scraping %s', url)
+        
+def get_basic_information(text):
+    results = []
+    
+    raw_results = re.findall('famed-song-2">.*?niconico</a>', text, re.S)
+    for result in raw_results:
+        
+        title = re.search('曲目.*?href="(.*?)".*?>(.*?)<', result)
+        name = title.group(2)
+        name_url = '(https://mzh.moegirl.org.cn' + title.group(1)
+        
+        # P主无wiki链接
+        P = re.search('P主</b>：(.*?)<', result)
+        if P.group(1) == '':
+            # P主有wiki链接
+            P = re.search('P主</b>：<.*?>(.*?)<', result)
+        if P.group(1) == '':
+            # P主如有wiki链接
+            P = re.search('P主</b>：<.*?><.*?>(.*?)<', result)
+        producer = P.group(1)
+
+        time = re.search('投稿.*?：(.*?)<.*?达成.*?：(.*?)<.*?所用.*?：(.*?)<', result)
+        submission_time = time.group(1)
+        achieve_time = time.group(2)
+        time_cost = time.group(3)
+            
+        result = {
+            'name': name,
+            'name_url': name_url,
+            'producer': producer,
+            'submission_time': submission_time,
+            'achieve_time': achieve_time,
+            'time_cost': time_cost
+        }
+        results.append(result)
+
+    return results
+    
+    
+    
+def save_basic_information(results):
+    path = 'Basic_info.json'
+    with open(path,'w',encoding='utf-8') as file:
+        json.dump(results, file, ensure_ascii=False, indent=2)
 
 
 
@@ -33,30 +79,10 @@ headers = {
     'Accept-Language': 'zh-CN,zh;q=0.9',
 }
 
-results = re.findall('famed-song-2">.*?niconico</a>', scrape_page(url, headers), re.S)
+text = scrape_page(url, headers)
+results = get_basic_information(text)
 
-path = 'E:\Study\Computer\Projects\Only_Software\Self\VOCALOID_Search\VOCALOID.txt'
-with open(path,'w',encoding='utf-8') as file:
-    for result in results:
-        
-        title = re.search('曲目.*?href="(.*?)".*?>(.*?)<', result)
-        file.write('曲目:' + title.group(2) + '\n')
-        # file.write('(https://mzh.moegirl.org.cn' + title.group(1) +')\n')
-        
-        # P主无wiki链接
-        P = re.search('P主</b>：(.*?)<', result)
-        if P.group(1) == '':
-            # P主有wiki链接
-            P = re.search('P主</b>：<.*?>(.*?)<', result)
-        if P.group(1) == '':
-            # P主如有wiki链接
-            P = re.search('P主</b>：<.*?><.*?>(.*?)<', result)
-        file.write('P主:' + P.group(1) +'\n')
-  
-        time = re.search('投稿.*?：(.*?)<.*?达成.*?：(.*?)<.*?所用.*?：(.*?)<', result)
-        file.write('投稿时间:' + time.group(1) +'\n')
-        file.write('达成时间:' + time.group(2) +'\n')
-        file.write('所用时间:' + time.group(3) +'\n\n')
+save_basic_information(results)
 
 # 正则表达式
 # 歌曲详情界面链接:
