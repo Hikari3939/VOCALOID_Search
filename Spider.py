@@ -102,7 +102,11 @@ def get_basic_information(html):
 
 
 def save_basic_information(results):
-    path = 'Basic_info.json'
+    dir = 'basic'
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+
+    path = dir+'/Basic_info.json'
     with open(path,'w',encoding='utf-8') as file:
         json.dump(results, file, ensure_ascii=False, indent=2)
 
@@ -170,7 +174,7 @@ if __name__ =='__main__':
 
     #爬取详细信息
     
-    #多进程方式(被ban了)
+    #多进程方式(被网站ban了)
     # pool = multiprocessing.Pool()
     # urls = get_urls(html)
     # pool.map(scrape_and_save_details, urls)
@@ -184,7 +188,7 @@ if __name__ =='__main__':
         os.makedirs(dir)
     num = 1
     for url in urls:
-        if num >= 1 and num <= 1000:
+        if num >= 1 and num <= 1:
             html = scrape_page(url)
             get_and_save_details(html, dir, num)
         num += 1
