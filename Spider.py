@@ -102,7 +102,7 @@ def get_basic_information(html):
 
 
 def save_basic_information(results):
-    dir = 'basic'
+    dir = 'basic_info'
     if not os.path.exists(dir):
         os.makedirs(dir)
 
@@ -183,7 +183,7 @@ if __name__ =='__main__':
     
     #单进程方式
     urls = get_urls(html)
-    dir = 'details'
+    dir = 'detail_info'
     if not os.path.exists(dir):
         os.makedirs(dir)
     num = 1
